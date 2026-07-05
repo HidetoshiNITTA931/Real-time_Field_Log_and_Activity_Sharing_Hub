@@ -41,8 +41,8 @@ def download_dataverse_file(output_file_name, output_file_title, top_text):
     df = data_cleaning(records_iter=records_iter)
     for extend_data in setting.EXTEND_DATA:
         df[extend_data[0]] = list(map(lambda x: x[extend_data[1]], df[extend_data[0]].values))
+    logging.debug(df)
     if setting.DEBUG_MODE is True:
-        print(df)
         df.to_csv("debug.csv")
     logging.info("Export to Markdown")
     export_markdown(
